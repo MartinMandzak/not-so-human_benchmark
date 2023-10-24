@@ -17,7 +17,7 @@ def find_and_click():
 
 if __name__ == "__main__":
     time.sleep(2)
-    pyautogui.moveTo(screen_w//2,screen_h//2+50)
-    pyautogui.click()
-    for click in range(31):
+    #pyautogui.moveTo(screen_w//2,screen_h//2+50)
+    #pyautogui.click()
+    for click in range(32):
         find_and_click()
