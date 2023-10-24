@@ -1,21 +1,23 @@
-from PIL import ImageGrab
 import pyautogui
-import cv2
+from PIL import ImageGrab
 import numpy as np
+import time
 
-target_png = cv2.imread("C:/Users/mandz/Desktop/GitHub Projects/not-so-human_benchmark/assets/target.png")
+screen_w,screen_h = pyautogui.size()
+region = (0,235,screen_w,screen_h-70)
+target_color = (149,195,232)
 
-def find_and_click(): 
+def find_and_click():
     screenshot = ImageGrab.grab()
-    screenshot_cv = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
-
-    result = cv2.matchTemplate(screenshot_cv, target_png, cv2.TM_CCOEFF_NORMED)
-    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-
-    target_x,target_y = max_loc
-
-    pyautogui.move(target_x,target_y)
+    screenshot_np = np.array(screenshot)
+    coords = np.where(np.all(screenshot_np == target_color, axis=2))
+    x,y = coords[1][-1],coords[0][-1]
+    pyautogui.moveTo(x+15,y-15)
     pyautogui.click()
 
-
-find_and_click()
+if __name__ == "__main__":
+    time.sleep(2)
+    pyautogui.moveTo(screen_w//2,screen_h//2+50)
+    pyautogui.click()
+    for click in range(31):
+        find_and_click()
