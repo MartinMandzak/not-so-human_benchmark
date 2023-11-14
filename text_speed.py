@@ -15,5 +15,6 @@ soup = BeautifulSoup(data, 'html.parser')
 span_tags = soup.find_all('span', class_ = 'incomplete')
 
 time.sleep(5) #because accept cookies fucks me in the ass 
-pyautogui.typewrite(''.join([span.text for span in span_tags]))
+text = ''.join([span.text for span in span_tags])
+pyautogui.typewrite(text)
 time.sleep(10)
