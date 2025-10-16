@@ -1,5 +1,5 @@
 """
-Code that functions as a way to cheap the humanbenchmark's typewriter
+Code that functions as a way to cheat the humanbenchmark's typewriter
 """
 
 from selenium import webdriver
